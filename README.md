@@ -1,6 +1,10 @@
 
 [<img src="https://github-ads.s3.eu-central-1.amazonaws.com/support-ukraine.svg?t=1" />](https://supportukrainenow.org)
 
+# 7.4 compatible
+
+This repo is a fork of [Spaties file system watcher](https://github.com/spatie/file-system-watcher), with a few changes to make the package compitable with php 7.4. The original package of Spatie is only compitable with > php 8.0. Sometimes your not in control of the php version that is required :-(
+
 # Watch changes in the file system using PHP
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/file-system-watcher.svg?style=flat-square)](https://packagist.org/packages/spatie/file-system-watcher)
@@ -8,7 +12,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/spatie/file-system-watcher/Check%20&%20fix%20styling?label=code%20style)](https://github.com/spatie/file-system-watcher/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/file-system-watcher.svg?style=flat-square)](https://packagist.org/packages/spatie/file-system-watcher)
 
-This package allows you to react to all kinds of changes in the file system. 
+This package allows you to react to all kinds of changes in the file system.
 
 Here's how you can run code when a new file gets added.
 
@@ -30,7 +34,7 @@ We invest a lot of resources into creating [best in class open source packages](
 
 We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
-## Installation  
+## Installation
 
 You can install the package via composer:
 

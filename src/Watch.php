@@ -53,7 +53,13 @@ class Watch
         $this->shouldContinue = fn () => true;
     }
 
-    public function setPaths(string | array $paths): self
+    /*
+     *
+     * @param string | array  $paths
+     *
+     * @return self
+     */
+    public function setPaths($paths): self
     {
         if (is_string($paths)) {
             $paths = func_get_args();
@@ -105,7 +111,7 @@ class Watch
 
         return $this;
     }
-    
+
     public function setIntervalTime(int $interval): self
     {
         $this->interval = $interval;
@@ -150,9 +156,11 @@ class Watch
         ];
 
         $process = new Process(
-            command: $command,
-            cwd: realpath(__DIR__ . '/../bin'),
-            timeout: null,
+            $command,
+            realpath(__DIR__ . '/../bin'),
+            null,
+            null,
+            null
         );
 
         $process->start();
@@ -171,13 +179,30 @@ class Watch
 
             $path = trim($path);
 
-            match ($type) {
-                static::EVENT_TYPE_FILE_CREATED => $this->callAll($this->onFileCreated, $path),
-                static::EVENT_TYPE_FILE_UPDATED => $this->callAll($this->onFileUpdated, $path),
-                static::EVENT_TYPE_FILE_DELETED => $this->callAll($this->onFileDeleted, $path),
-                static::EVENT_TYPE_DIRECTORY_CREATED => $this->callAll($this->onDirectoryCreated, $path),
-                static::EVENT_TYPE_DIRECTORY_DELETED => $this->callAll($this->onDirectoryDeleted, $path),
-            };
+            switch ($type) {
+                case static::EVENT_TYPE_FILE_CREATED:
+                    $this->callAll($this->onFileCreated, $path);
+                    break;
+
+                case static::EVENT_TYPE_FILE_UPDATED:
+                    $this->callAll($this->onFileUpdated, $path);
+                    break;
+
+                case static::EVENT_TYPE_FILE_DELETED:
+                    $this->callAll($this->onFileDeleted, $path);
+                    break;
+
+                case static::EVENT_TYPE_DIRECTORY_CREATED:
+                    $this->callAll($this->onDirectoryCreated, $path);
+                    break;
+
+                case static::EVENT_TYPE_DIRECTORY_DELETED:
+                    $this->callAll($this->onDirectoryDeleted, $path);
+                    break;
+
+                default:
+                    break;
+            }
 
             foreach ($this->onAny as $onAnyCallable) {
                 $onAnyCallable($type, $path);

@@ -2,6 +2,9 @@
 
 All notable changes to `file-system-watcher` will be documented in this file.
 
+## 1.2.0 - 2022-05-24
+- Make compitble with php 7.4
+
 ## 1.1.0 - 2022-02-17
 
 ## What's Changed
